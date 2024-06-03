@@ -1,4 +1,4 @@
-import CabinList from "@/app/_components/cabinList";
+import CabinList from "@/app/_components/CabinList";
 import { Suspense } from "react";
 import Spinner from "../_components/Spinner";
 
