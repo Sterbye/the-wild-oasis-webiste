@@ -1,20 +1,28 @@
 "use client";
 
 import { useState } from "react";
+import { updateProfile } from "../_lib/actions";
 
-function UpdateProfileForm({ children }) {
+function UpdateProfileForm({ guest, children }) {
   const [count, setCount] = useState();
 
-  const countryFlag =
-    "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg";
-  const nationality = "portugal";
+  const { fullName, email, nationality, nationalID, countryFlag } = guest;
+
+  // const countryFlag =
+  //   "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg";
+  // const nationality = "portugal";
 
   return (
-    <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+    <form
+      action={updateProfile}
+      className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+    >
       <div className="space-y-2">
         <label>Full name</label>
         <input
           disabled
+          defaultValue={fullName}
+          name="fullName"
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
         />
       </div>
@@ -23,6 +31,8 @@ function UpdateProfileForm({ children }) {
         <label>Email address</label>
         <input
           disabled
+          name="email"
+          defaultValue={email}
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
         />
       </div>
@@ -43,6 +53,7 @@ function UpdateProfileForm({ children }) {
       <div className="space-y-2">
         <label htmlFor="nationalID">National ID number</label>
         <input
+          defaultValue={nationalID}
           name="nationalID"
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
         />
